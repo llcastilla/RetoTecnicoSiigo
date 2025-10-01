@@ -1,0 +1,6 @@
+{
+  "loginFallido": {
+    "correo": "usuario.invalido@yopmail.com",
+    "contraseña": "ClaveErrada"
+  }
+}

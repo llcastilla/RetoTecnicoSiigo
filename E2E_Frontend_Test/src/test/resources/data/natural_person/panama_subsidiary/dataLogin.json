@@ -1,10 +1,6 @@
 {
   "loginExitoso": {
-    "Correo": "usuario.prueba@yopmail.com",
-    "Contraseña": "Password123*"
-  },
-  "loginFallido": {
-    "Correo": "usuario.invalido@yopmail.com",
-    "Contraseña": "ClaveErrada"
+    "correo": "retoautomationsiigo2@yopmail.com",
+    "contraseña": "J1h4{zMTV3"
   }
 }

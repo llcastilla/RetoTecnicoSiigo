@@ -1,7 +1,7 @@
 package co.com.siigo.certificacion.tasks;
 
 import co.com.siigo.certificacion.interactions.StopWatch;
-import co.com.siigo.certificacion.models.ContactData;
+import co.com.siigo.certificacion.models.Login;
 import co.com.siigo.certificacion.userinterfaces.GenericsPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -19,10 +19,10 @@ import static co.com.siigo.certificacion.userinterfaces.login.ContactDataPage.*;
 public class AddContactData implements Task {
 
 
-    private final ContactData contactData;
+    private final Login login;
 
-    public AddContactData(ContactData contactData) {
-        this.contactData = contactData;
+    public AddContactData(Login login) {
+        this.login = login;
     }
 
     @Override
@@ -42,10 +42,10 @@ public class AddContactData implements Task {
                 Click.on(RADIO_TYPE_ACCOUNT),
 
                 Scroll.to(TXT_PRODUCTNUMBER),
-                Enter.theValue(contactData.getProductNumber()).into(TXT_PRODUCTNUMBER),
+                Enter.theValue(login.getProductNumber()).into(TXT_PRODUCTNUMBER),
 
                 Scroll.to(TXT_HOLDER_NAME),
-                Enter.theValue(contactData.getHolderName()).into(TXT_HOLDER_NAME),
+                Enter.theValue(login.getHolderName()).into(TXT_HOLDER_NAME),
 
                 Scroll.to(SELECT_TYPE_ID),
                 Click.on(SELECT_TYPE_ID),
@@ -54,7 +54,7 @@ public class AddContactData implements Task {
                 Click.on(IMPUT_TYPE_ID),
 
                 Scroll.to(TXT_NUM_ID),
-                Enter.theValue(contactData.getNumId()).into(TXT_NUM_ID),
+                Enter.theValue(login.getNumId()).into(TXT_NUM_ID),
 
                 Scroll.to(RADIO_TYPE_ACCOUNT_2),
                 Click.on(RADIO_TYPE_ACCOUNT_2),
@@ -72,10 +72,10 @@ public class AddContactData implements Task {
                 Click.on(CLICK_TYPE_ID),
 
                 Scroll.to(TX_NUM_ID),
-                Enter.theValue(contactData.getNumId()).into(TX_NUM_ID),
+                Enter.theValue(login.getNumId()).into(TX_NUM_ID),
 
                 Scroll.to(TX_FULL_NAME),
-                Enter.theValue(contactData.getHolderName()).into(TX_FULL_NAME),
+                Enter.theValue(login.getHolderName()).into(TX_FULL_NAME),
 
                 Scroll.to(CLICK_SIGNATURE_TYPE),
                 Click.on(CLICK_SIGNATURE_TYPE),
@@ -84,7 +84,7 @@ public class AddContactData implements Task {
                 Click.on(SEL_SIGNATURE_TYPE),
 
                 Scroll.to(TX2_FULL_NAME),
-                Enter.theValue(contactData.getHolderName()).into(TX2_FULL_NAME),
+                Enter.theValue(login.getHolderName()).into(TX2_FULL_NAME),
 
                 StopWatch.inSeconds(8),
 
@@ -100,7 +100,7 @@ public class AddContactData implements Task {
 
     }
 
-    public static AddContactData enElFormulario(ContactData contactData) {
-        return Tasks.instrumented(AddContactData.class, contactData);
+    public static AddContactData enElFormulario(Login login) {
+        return Tasks.instrumented(AddContactData.class, login);
     }
 }

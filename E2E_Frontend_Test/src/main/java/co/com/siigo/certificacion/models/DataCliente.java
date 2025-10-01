@@ -23,7 +23,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PersonalData {
+public class DataCliente {
 
 
     @JsonProperty("typeDocument")

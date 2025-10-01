@@ -1,6 +1,5 @@
 package co.com.siigo.certificacion.models;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -9,34 +8,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "loginExitoso",
-        "loginFallido",
-
-
+        "correo",
+        "Contraseña"
 })
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer implements Serializable {
 
+public class LoginError {
 
+    @JsonProperty("correo")
+    private String correo;
 
-    @JsonProperty("login")
-    private transient DataCliente dataCliente;
-
-    @JsonProperty("dataCliente")
-    private transient Login login;
-
-
-
-
-
-
-
+    @JsonProperty("contraseña")
+    private String contrasena;
 
 }

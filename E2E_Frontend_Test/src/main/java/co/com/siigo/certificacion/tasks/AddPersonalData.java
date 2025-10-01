@@ -1,7 +1,7 @@
 package co.com.siigo.certificacion.tasks;
 
 import co.com.siigo.certificacion.interactions.StopWatch;
-import co.com.siigo.certificacion.models.PersonalData;
+import co.com.siigo.certificacion.models.DataCliente;
 import co.com.siigo.certificacion.userinterfaces.GenericsPage;
 import co.com.siigo.certificacion.utils.DateTimeFormat;
 import net.serenitybdd.screenplay.Actor;
@@ -18,10 +18,10 @@ import static co.com.siigo.certificacion.userinterfaces.login.PersonalDataPage.*
 
 public class AddPersonalData implements Task {
 
-    private final PersonalData personalData;
+    private final DataCliente dataCliente;
 
-    public AddPersonalData(PersonalData personalData) {
-        this.personalData = personalData;
+    public AddPersonalData(DataCliente dataCliente) {
+        this.dataCliente = dataCliente;
     }
 
     @Override
@@ -34,10 +34,10 @@ public class AddPersonalData implements Task {
 
                 Click.on(LBX_DOCUMENT_TYPE),
                 Click.on(SEL_DOCUMENT_TYPE),
-                Check.whether(personalData.getDocumentNumber().equals("0"))
+                Check.whether(dataCliente.getDocumentNumber().equals("0"))
                         .andIfSo(Enter.theValue(DateTimeFormat.DesiredDate()).into(TXT_DOCUMENT))
-                        .otherwise(Enter.theValue(personalData.getDocumentNumber()).into(TXT_DOCUMENT)),
-                Enter.theValue(personalData.getEmail()).into(TXT_EMAIL),
+                        .otherwise(Enter.theValue(dataCliente.getDocumentNumber()).into(TXT_DOCUMENT)),
+                Enter.theValue(dataCliente.getEmail()).into(TXT_EMAIL),
                 StopWatch.inSeconds(8),
 
                 Click.on(GenericsPage.BTN_CONTINUE),
@@ -47,8 +47,8 @@ public class AddPersonalData implements Task {
                 );
     }
 
-    public static AddPersonalData enTheForm(PersonalData personalData) {
-        return Tasks.instrumented(AddPersonalData.class, personalData);
+    public static AddPersonalData enTheForm(DataCliente dataCliente) {
+        return Tasks.instrumented(AddPersonalData.class, dataCliente);
 
     }
 }

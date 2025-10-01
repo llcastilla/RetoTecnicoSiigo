@@ -10,31 +10,20 @@ import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "numId",
-        "country",
-        "holderName",
-        "ProductNumber",
-        "tramite"
+        "correo",
+        "Contraseña"
 })
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class ContactData {
+public class Login {
 
-    @JsonProperty("numId")
-    private String numId;
+    @JsonProperty("correo")
+    private String correo;
 
-    @JsonProperty("country")
-    private String country;
+    @JsonProperty("contraseña")
+    private String contrasena;
 
-    @JsonProperty("holderName")
-    private String holderName;
-
-    @JsonProperty("ProductNumber")
-    private String ProductNumber;
-
-    @JsonProperty("tramite")
-    private String tramite;
 }
