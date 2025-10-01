@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/crearCliente.feature",
         glue = {"co.com.siigo.certificacion.stepdefinitions.crearCliente"},
-        tags = "@ESCENARIO2",
+        tags = "",
         snippets = SnippetType.CAMELCASE
 )
 public class CrearClienteRunner {
