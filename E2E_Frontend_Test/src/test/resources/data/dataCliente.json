@@ -10,8 +10,19 @@
     "indicativo": "57",
     "telefono": "3045766592",
     "ext": "541",
+    "indice": "4",
     "nombreComercial": "leonardo luis castilla garcia",
     "ciudad": "Valledupar",
-    "direccion": "cr 29 #7a-65"
+    "direccion": "cr 29 #7a-65",
+    "codigoPostal":"200005"
+  },
+
+  "contacto": {
+    "nombre": "carlos",
+    "apellido": "castilla",
+    "correo": "retoautomationsiigo2@yopmail.com",
+    "cargo": "QA",
+    "indicativo": "57",
+    "telefono": "3045766592"
   }
 }

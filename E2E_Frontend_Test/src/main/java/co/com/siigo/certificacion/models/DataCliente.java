@@ -15,9 +15,11 @@ import lombok.Setter;
         "indicativo",
         "telefono",
         "ext",
+        "indice",
         "nombreComercial",
         "ciudad",
-        "direccion"
+        "direccion",
+        "codigoPostal"
 })
 @Getter
 @Setter
@@ -42,6 +44,9 @@ public class DataCliente {
     @JsonProperty("ext")
     private String ext;
 
+    @JsonProperty("indice")
+    private String indice;
+
     @JsonProperty("nombreComercial")
     private String nombreComercial;
 
@@ -50,4 +55,8 @@ public class DataCliente {
 
     @JsonProperty("direccion")
     private String direccion;
+
+
+    @JsonProperty("codigoPostal")
+    private String codigoPostal;
 }

@@ -55,7 +55,7 @@ public class CrearClienteStep {
     public void ingresaLosDatosDelClienteTerceroDesdeElArchivoDataClienteJson() {
         Customer customer = theActorInTheSpotlight().recall(CUSTOMER_DATA);
         theActorInTheSpotlight().attemptsTo(
-                RegistrarCliente.registrarCliente(customer.getDataCliente())
+                RegistrarCliente.registrarCliente(customer.getDataCliente(),customer.getContacto())
 
 
         );

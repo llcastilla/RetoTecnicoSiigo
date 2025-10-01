@@ -1,6 +1,8 @@
 package co.com.siigo.certificacion.stepdefinitions.login;
 
 import co.com.siigo.certificacion.models.Customer;
+import co.com.siigo.certificacion.questions.MensajeBienvenidaDashboard;
+import co.com.siigo.certificacion.questions.MensajeErrorLogin;
 import co.com.siigo.certificacion.tasks.*;
 import co.com.siigo.certificacion.userinterfaces.MainPagePage;
 import co.com.siigo.certificacion.utils.dataPruebas;
@@ -18,9 +20,11 @@ import net.thucydides.core.webdriver.SerenityWebdriverManager;
 import static co.com.siigo.certificacion.userinterfaces.ValidationMessagesPage.TEXTO_BIENVENIDA;
 import static co.com.siigo.certificacion.userinterfaces.ValidationMessagesPage.TEXTO_CREDENCIALES_INCORRECTAS;
 import static co.com.siigo.certificacion.utils.WordsToRemember.CUSTOMER_DATA;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
 
 
 public class LoginStep {
@@ -56,16 +60,11 @@ public class LoginStep {
     @Then("el sistema redirige al dashboard principal")
     public void elSistemaRedirigeAlDashboardPrincipal() throws InterruptedException {
 
-        theActorInTheSpotlight().attemptsTo(
-                WaitUntil.the(TEXTO_BIENVENIDA, isVisible()).forNoMoreThan(10).seconds()
+        theActorInTheSpotlight().should(
+                seeThat("El mensaje de bienvenida", MensajeBienvenidaDashboard.es(),
+                        containsString("Te damos la bienvenida, ¿Qué deseas hacer?"))
         );
 
-        String texto = TEXTO_BIENVENIDA.resolveFor(theActorInTheSpotlight()).getText();
-
-// Tomar solo la primera línea limpia de espacios extra
-        String primerLinea = texto.split("\\r?\\n")[0].trim();
-
-        assertThat(primerLinea).contains("Te damos la bienvenida, ¿Qué deseas hacer?");
     }
 
 
@@ -81,17 +80,9 @@ public class LoginStep {
     @Then("el sistema muestra el mensaje de error Usuario o contraseña incorrectos")
     public void elSistemaMuestraElMensajeDeErrorUsuarioOContraseñaIncorrectos() {
 
-        theActorInTheSpotlight().attemptsTo(
-                WaitUntil.the(TEXTO_CREDENCIALES_INCORRECTAS, isVisible()).forNoMoreThan(10).seconds()
+        theActorInTheSpotlight().should(
+                seeThat("El mensaje de error", MensajeErrorLogin.es(), containsString("Usuario o contraseña inválidos"))
         );
 
-        String texto = TEXTO_CREDENCIALES_INCORRECTAS.resolveFor(theActorInTheSpotlight()).getText();
-
-        // Tomar solo la primera línea limpia de espacios extra
-        String primerLinea = texto.split("\\r?\\n")[0].trim();
-
-        assertThat(primerLinea).contains("Usuario o contraseña inválidos");
     }
-
-
 }

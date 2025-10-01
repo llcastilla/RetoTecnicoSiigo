@@ -16,7 +16,8 @@ import java.io.Serializable;
         "loginExitoso",
         "loginFallido",
         "login",
-        "dataCliente"
+        "dataCliente",
+        "contacto"
 
 
 })
@@ -42,7 +43,8 @@ public class Customer implements Serializable {
     private DataCliente dataCliente;
 
 
-
+    @JsonProperty("contacto")
+    private Contacto contacto;
 
 
 
