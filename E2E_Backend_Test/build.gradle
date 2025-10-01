@@ -1,0 +1,52 @@
+repositories {
+    mavenLocal()
+    maven {
+        url = "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
+    }
+}
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url = "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
+        }
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:4.0.12")
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+group 'ms_gestioninformacioncliente_test'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+
+tasks.withType(Test){
+    maxParallelForks = Runtime.runtime.availableProcessors()
+}
+dependencies {
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.13'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
+    // Serenity BDD
+    implementation 'net.serenity-bdd:serenity-core:4.0.12'
+    implementation 'net.serenity-bdd:serenity-junit:4.0.12'
+    implementation 'net.serenity-bdd:serenity-cucumber:4.0.12'
+    implementation 'net.serenity-bdd:serenity-screenplay:4.0.12'
+    implementation 'net.serenity-bdd:serenity-screenplay-rest:4.0.12'
+}
+
+task variables(type: Test){
+    systemProperty 'token',System.getProperty('token')
+}
+gradle.startParameter.continueOnFailure = true

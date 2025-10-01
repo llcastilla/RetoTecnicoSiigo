@@ -1,0 +1,15 @@
+{
+
+  "personalData": {
+    "typeDocument": "Cédula de Ciudadanía",
+    "documentNumber": "0",
+    "email": "pruebafront@front.com"
+  },
+  "contactData": {
+    "tramite": "PRUEBA AUTOMATIZADA CARGA MANUAL",
+    "numId": "40155945745",
+    "country": "CO (+57)",
+    "holderName": "leonardo pruebas",
+    "ProductNumber": "4446548547"
+  }
+}

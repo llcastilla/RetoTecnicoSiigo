@@ -1,0 +1,134 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+#*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*/lib/
+
+# Serenity-BDD
+*/target/
+*/*/target/
+
+# Intellij
+.idea/
+*/.idea/
+*/out/
+
+*/.idea/
+*/*/.idea/
+*/*/out/
+
+# Ignore iml Files #
+*.iml
+
+# Gradle
+.gradle
+/.gradle
+*/.gradle/
+*/build/
+
+*/.gradle
+/.gradle
+*/*/.gradle/
+*/*/build/
+
+# Cache of project
+.gradletasknamecache
+
+# External tool builders
+.externalToolBuilders/
+.floo
+
+### Sonar ###
+#Sonar generated dir
+/.sonar/
+/.scannerwork/
+sonar-project.properties
+
+### VisualStudioCode ###
+.vscode/
+
+# BlueJ files
+*.ctxt
+
+# Eclipse
+.classpath
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# Java annotation processor (APT)
+.factorypath
+
+# sbteclipse plugin
+.target
+
+# Code Recommenders
+.recommenders/
+
+# Cache of project
+.gradletasknamecache
+
+# External tool builders
+.externalToolBuilders/
+.floo
+
+### Sonar ###
+#Sonar generated dir
+/.sonar/
+/.scannerwork/
+sonar-project.properties
+
+### VisualStudioCode ###
+.vscode/
+
+# BlueJ files
+*.ctxt
+
+# Eclipse
+.classpath
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# Java annotation processor (APT)
+.factorypath
+
+# sbteclipse plugin
+.target
+
+# Code Recommenders
+.recommenders/
