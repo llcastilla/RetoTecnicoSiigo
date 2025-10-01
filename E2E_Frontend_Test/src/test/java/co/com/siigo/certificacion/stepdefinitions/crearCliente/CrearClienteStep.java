@@ -2,9 +2,11 @@ package co.com.siigo.certificacion.stepdefinitions.crearCliente;
 
 import co.com.siigo.certificacion.models.Customer;
 import co.com.siigo.certificacion.questions.AlertaGuardado;
+import co.com.siigo.certificacion.questions.AlertaGuardadoError;
 import co.com.siigo.certificacion.tasks.CredencialesCorreo;
 import co.com.siigo.certificacion.tasks.NavegarAClientesTerceros;
 import co.com.siigo.certificacion.tasks.RegistrarCliente;
+import co.com.siigo.certificacion.tasks.RegistrarClienteError;
 import co.com.siigo.certificacion.userinterfaces.MainPagePage;
 import co.com.siigo.certificacion.utils.dataPruebas;
 import io.cucumber.java.After;
@@ -43,6 +45,7 @@ public class CrearClienteStep {
     public void elUsuarioSeLogueaDataLogin(String prolife) {
         theActorInTheSpotlight().remember(CUSTOMER_DATA, dataPruebas.getCustomerDataWith(prolife));
     }
+
     @When("navega a la sección Clientes Terceros")
     public void navegaALaSecciónClientesTerceros() {
         Customer customer = theActorInTheSpotlight().recall(CUSTOMER_DATA);
@@ -53,15 +56,15 @@ public class CrearClienteStep {
 
         );
     }
+
     @And("ingresa los datos del cliente tercero desde el archivo")
     public void ingresaLosDatosDelClienteTerceroDesdeElArchivoDataClienteJson() {
         Customer customer = theActorInTheSpotlight().recall(CUSTOMER_DATA);
         theActorInTheSpotlight().attemptsTo(
-                RegistrarCliente.registrarCliente(customer.getDataCliente(),customer.getContacto())
-
-
+                RegistrarCliente.registrarCliente(customer.getDataCliente(), customer.getContacto())
         );
     }
+
     @Then("el sistema muestra un mensaje de confirmación Cliente tercero creado exitosamente")
     public void elSistemaMuestraUnMensajeDeConfirmaciónClienteTerceroCreadoExitosamente() {
         theActorInTheSpotlight().should(
@@ -70,5 +73,23 @@ public class CrearClienteStep {
                         equalTo("Tercero guardado exitosamente"))
         );
     }
+
+    @And("ingresa los datos del cliente tercero desde el archivo con data vacia")
+    public void ingresaLosDatosDelClienteTerceroDesdeElArchivoConDataVacia() {
+        Customer customer = theActorInTheSpotlight().recall(CUSTOMER_DATA);
+        theActorInTheSpotlight().attemptsTo(
+                RegistrarClienteError.registrarCliente(customer.getDataCliente(), customer.getContacto())
+        );
+    }
+
+    @Then("el sistema muestra un mensaje de confirmación de que faltan campos")
+    public void elSistemaMuestraUnMensajeDeConfirmaciónDeQueFaltanCampos() {
+        theActorInTheSpotlight().should(
+                seeThat("El mensaje de error",
+                        AlertaGuardadoError.es(),
+                        equalTo("Tienes campos obligatorios sin completar."))
+        );
+    }
+
 
 }

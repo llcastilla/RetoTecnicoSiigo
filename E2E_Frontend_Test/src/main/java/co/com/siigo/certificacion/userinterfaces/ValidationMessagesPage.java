@@ -18,6 +18,9 @@ public class ValidationMessagesPage {
     public static final Target ALERTA_TERCERO_GUARDADO = Target.the("Alerta de confirmación")
             .located(By.xpath("//div[@role='alertdialog' and contains(text(),'Tercero guardado exitosamente')]"));
 
+    public static final Target ALERTA_TERCERO_GUARDADO_ERROR= Target.the("Alerta de confirmación error")
+            .located(By.xpath("//div[contains(@class,'toast-message') and contains(text(),'Tienes campos obligatorios sin completar.')]"));
+
     private ValidationMessagesPage() {
 
     }
