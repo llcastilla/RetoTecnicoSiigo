@@ -9,7 +9,6 @@ import net.serenitybdd.screenplay.actions.Enter;
 
 import static co.com.siigo.certificacion.userinterfaces.GenericsPage.BTN_CONTINUE;
 import static co.com.siigo.certificacion.userinterfaces.login.OpenCredencialesCorreo.*;
-import static co.com.siigo.certificacion.userinterfaces.login.OpenYourFormPage.BTN_UPLOAD_DOCUMENT;
 
 
 public class CredencialesCorreo implements Task {

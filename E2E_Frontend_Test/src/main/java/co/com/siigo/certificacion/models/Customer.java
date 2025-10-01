@@ -15,6 +15,8 @@ import java.io.Serializable;
 @JsonPropertyOrder({
         "loginExitoso",
         "loginFallido",
+        "login",
+        "dataCliente"
 
 
 })
@@ -32,6 +34,12 @@ public class Customer implements Serializable {
     @JsonProperty("loginFallido")
     private transient LoginError loginFallido;
 
+
+    @JsonProperty("login")
+    private Login login;
+
+    @JsonProperty("dataCliente")
+    private DataCliente dataCliente;
 
 
 

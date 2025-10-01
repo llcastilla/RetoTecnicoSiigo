@@ -11,7 +11,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "correo",
-        "Contraseña"
+        "contraseña"
 })
 @Getter
 @Setter

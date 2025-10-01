@@ -4,27 +4,12 @@ Feature: Flujo E2E - Crear cliente tercero
   Quiero registrar clientes terceros
   Para que queden disponibles en el sistema de gestión
 
-  @ClienteTerceroExitoso
-  Scenario Outline: Crear cliente exitoso en el formulario
-    Given el usuario inicia sesión <login>
-    When completa todos los campos obligatorios con datos válidos <data>
-    And selecciona "No responsable de IVA" con responsabilidad "R-99-PN"
-    And hace clic en "Guardar"
-    Then el sistema muestra "Cliente creado exitosamente"
-    And el registro aparece en la lista con Código sucursal "<codigo_sucursal>"
+  Scenario Outline: Crear un cliente tercero usando datos desde JSON
+    Given el usuario se loguea <data>
+    When navega a la sección Clientes Terceros
+    And ingresa los datos del cliente tercero desde el archivo
+    Then el sistema muestra un mensaje de confirmación Cliente tercero creado exitosamente
 
     Examples:
-      | login     |
-      | dataLogin |
-
-  @ClienteTerceroValidaciones
-  Scenario Outline: Intentar crear cliente con múltiples validaciones inválidas
-    Given el usuario abre el formulario de clientes
-    When ingresa información inválida <data>
-    And completa los demás campos obligatorios correctamente
-    Then el sistema muestra mensajes de validación en Identificación, Código de la sucursal y Teléfono
-    And el cliente no es creado
-
-    Examples:
-      | data                                                                   |
-      | {"Identificación":"12","Código sucursal":"12","Teléfono":"1423423423"} |
+      | data        |
+      | dataCliente |

@@ -1,9 +1,6 @@
-package co.com.siigo.certificacion.stepdefinitions;
+package co.com.siigo.certificacion.stepdefinitions.login;
 
-import co.com.siigo.certificacion.exeptions.AccountCreationFailure;
-import co.com.siigo.certificacion.interactions.StopWatch;
 import co.com.siigo.certificacion.models.Customer;
-import co.com.siigo.certificacion.questions.SuccessMessageLinkFormDigital;
 import co.com.siigo.certificacion.tasks.*;
 import co.com.siigo.certificacion.userinterfaces.MainPagePage;
 import co.com.siigo.certificacion.utils.dataPruebas;
@@ -12,25 +9,15 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.webdriver.SerenityWebdriverManager;
-import org.hamcrest.Matchers;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
 import static co.com.siigo.certificacion.userinterfaces.ValidationMessagesPage.TEXTO_BIENVENIDA;
 import static co.com.siigo.certificacion.userinterfaces.ValidationMessagesPage.TEXTO_CREDENCIALES_INCORRECTAS;
-import static co.com.siigo.certificacion.utils.Constants.MENSAJEOK;
 import static co.com.siigo.certificacion.utils.WordsToRemember.CUSTOMER_DATA;
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

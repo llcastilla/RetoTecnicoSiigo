@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 public class dataPruebas {
 
-    private static final String RUTA = "src/test/resources/data/natural_person/panama_subsidiary/";
+    private static final String RUTA = "src/test/resources/data/";
     private static final String EXTENCION = ".json";
 
     private dataPruebas(){}

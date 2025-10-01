@@ -1,4 +1,4 @@
-package co.com.siigo.certificacion.runners;
+package co.com.siigo.certificacion.runners.crearCliente;
 
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.CucumberOptions.SnippetType;
@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/digital_form/crearCliente.feature",
-        glue = {"co.com.bancolombia.certificacion.stepdefinitions"},
+        features = "src/test/resources/features/crearCliente.feature",
+        glue = {"co.com.siigo.certificacion.stepdefinitions.crearCliente"},
         tags = "",
         snippets = SnippetType.CAMELCASE
 )

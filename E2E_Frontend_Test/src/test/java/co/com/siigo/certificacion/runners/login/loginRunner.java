@@ -1,4 +1,4 @@
-package co.com.siigo.certificacion.runners;
+package co.com.siigo.certificacion.runners.login;
 
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.CucumberOptions.SnippetType;
@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         features = "src/test/resources/features/login.feature",
-        glue = {"co.com.siigo.certificacion.stepdefinitions"},
+        glue = {"co.com.siigo.certificacion.stepdefinitions.login"},
         tags = "",
         snippets = SnippetType.CAMELCASE
 )
