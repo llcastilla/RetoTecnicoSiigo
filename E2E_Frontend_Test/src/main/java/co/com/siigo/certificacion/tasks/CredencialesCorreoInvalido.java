@@ -1,6 +1,5 @@
 package co.com.siigo.certificacion.tasks;
 
-import co.com.siigo.certificacion.models.Login;
 import co.com.siigo.certificacion.models.LoginError;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;

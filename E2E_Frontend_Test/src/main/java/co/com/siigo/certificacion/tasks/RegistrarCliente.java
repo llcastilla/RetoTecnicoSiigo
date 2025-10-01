@@ -3,7 +3,7 @@ package co.com.siigo.certificacion.tasks;
 import co.com.siigo.certificacion.interactions.StopWatch;
 import co.com.siigo.certificacion.models.Contacto;
 import co.com.siigo.certificacion.models.DataCliente;
-import co.com.siigo.certificacion.userinterfaces.crearCliente.ClientePageForm;
+import co.com.siigo.certificacion.utils.NumeroIdentificacionGenerator;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
@@ -11,10 +11,8 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
-
 import static co.com.siigo.certificacion.userinterfaces.crearCliente.ClientePageForm.*;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class RegistrarCliente implements Task {
     private final DataCliente dataCliente;
@@ -27,7 +25,6 @@ public class RegistrarCliente implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-
 
         // Esperar a que el checkbox esté presente
         actor.attemptsTo(
@@ -42,12 +39,28 @@ public class RegistrarCliente implements Task {
                     Click.on(CHECKBOX_IS_CLIENT)
             );
         }
+
+        // Generar o validar el número de identificación
+        String numId = dataCliente.getNumId();
+
+        if (numId == null || numId.isEmpty()) {
+            // Genera uno válido dinámicamente
+            numId = NumeroIdentificacionGenerator.generar();
+        } else {
+            // Valida el que viene en DataCliente
+            NumeroIdentificacionGenerator.validar(numId);
+        }
+
+        // Guardar en memoria del actor
+        actor.remember("numId", numId);
+
+        // Flujo para diligenciar el formulario
         actor.attemptsTo(
                 WaitUntil.the(LISTADO_TIPO, isPresent()).forNoMoreThan(10).seconds(),
                 Click.on(LISTADO_TIPO),
                 WaitUntil.the(OPCION_ES_PERSONA, isPresent()).forNoMoreThan(10).seconds(),
                 Click.on(OPCION_ES_PERSONA),
-                Enter.theValue(dataCliente.getNumId()).into(INPUT_IDENTIFICACION),
+                Enter.theValue(numId).into(INPUT_IDENTIFICACION),
                 Click.on(AUTOCOMPLETAR_DATOS),
                 StopWatch.inSeconds(5),
                 Enter.theValue(dataCliente.getCodSucursal()).into(INPUT_SUCURSAL),
@@ -68,10 +81,9 @@ public class RegistrarCliente implements Task {
                 Enter.theValue(contacto.getCorreo()).into(INPUT_CORREO),
                 Enter.theValue(contacto.getCargo()).into(INPUT_CARGO),
                 Enter.theValue(contacto.getIndicativo()).into(INPUT_INDICATIVO_CONTACTO),
-                Enter.theValue(contacto.getTelefono()).into(INPUT_TELEFONO_CONTACTO)
-                );
-
-
+                Enter.theValue(contacto.getTelefono()).into(INPUT_TELEFONO_CONTACTO),
+                Click.on(BTN_GUARDAR)
+        );
     }
 
     public static RegistrarCliente registrarCliente(DataCliente dataCliente, Contacto contacto) {

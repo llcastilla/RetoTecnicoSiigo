@@ -92,5 +92,8 @@ public class ClientePageForm {
     public static final Target INPUT_TELEFONO_CONTACTO = Target.the("Input específico dentro del Shadow DOM")
             .located(ByJavascript.shadowElementByIndex("siigo-textfield-web", 16, "input,mdc-text-field__input"));
 
+    public static final Target BTN_GUARDAR = Target.the("Input específico dentro del Shadow DOM")
+            .located(By.xpath("//button[normalize-space(text())='Guardar']"));
+
 }
 

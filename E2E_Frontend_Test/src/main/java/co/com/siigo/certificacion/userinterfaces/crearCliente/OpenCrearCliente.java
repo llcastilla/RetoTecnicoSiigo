@@ -1,6 +1,5 @@
 package co.com.siigo.certificacion.userinterfaces.crearCliente;
 
-import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.webdriver.shadow.ByShadow;
 

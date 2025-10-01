@@ -1,6 +1,7 @@
 package co.com.siigo.certificacion.stepdefinitions.crearCliente;
 
 import co.com.siigo.certificacion.models.Customer;
+import co.com.siigo.certificacion.questions.AlertaGuardado;
 import co.com.siigo.certificacion.tasks.CredencialesCorreo;
 import co.com.siigo.certificacion.tasks.NavegarAClientesTerceros;
 import co.com.siigo.certificacion.tasks.RegistrarCliente;
@@ -21,6 +22,7 @@ import net.thucydides.core.webdriver.SerenityWebdriverManager;
 import static co.com.siigo.certificacion.utils.WordsToRemember.CUSTOMER_DATA;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 
 public class CrearClienteStep {
@@ -62,8 +64,11 @@ public class CrearClienteStep {
     }
     @Then("el sistema muestra un mensaje de confirmación Cliente tercero creado exitosamente")
     public void elSistemaMuestraUnMensajeDeConfirmaciónClienteTerceroCreadoExitosamente() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        theActorInTheSpotlight().should(
+                seeThat("El mensaje de confirmación",
+                        AlertaGuardado.es(),
+                        equalTo("Tercero guardado exitosamente"))
+        );
     }
 
 }

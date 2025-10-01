@@ -9,7 +9,6 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static co.com.siigo.certificacion.userinterfaces.crearCliente.OpenCrearCliente.*;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isNotPresent;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isPresent;
 
 public class NavegarAClientesTerceros extends PageObject implements Task {
