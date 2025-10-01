@@ -3,7 +3,7 @@ package co.com.siigo.certificacion.utils;
 public enum Constants {
     MESSAGE("Has finalizado tu solicitud con éxito."),
     MESSAGESUCCESLINK("PRUEBA AUTOMATIZADA CARGA MANUAL"),
-    MESSAGESUCCESLINKFORMDIGITAL("PRUEBA FORM DIGITAL AUTOMATIZADO"),
+    MENSAJEOK("Te damos la bienvenida, ¿Qué deseas hacer?"),
     MESSAGESUCCESLINK_PJ("Ha finalizado la firma de los documentos"),
     MESSAGE_FAIL_INITIAL_DEPOSIT("El deposito inicial debe ser mínimo de USD "),
     MESSAGE_FAIL_INITIAL_TERM_DEPOSIT("El monto mínimo del depósito debe ser de USD"),

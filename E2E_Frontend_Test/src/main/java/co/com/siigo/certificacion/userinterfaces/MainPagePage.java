@@ -1,4 +1,4 @@
-package co.com.siigo.certificacion.userinterfaces.login;
+package co.com.siigo.certificacion.userinterfaces;
 
 import net.serenitybdd.annotations.DefaultUrl;
 import net.serenitybdd.core.pages.PageObject;

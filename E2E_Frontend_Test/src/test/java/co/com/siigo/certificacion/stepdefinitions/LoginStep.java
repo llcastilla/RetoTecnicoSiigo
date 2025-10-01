@@ -1,27 +1,39 @@
 package co.com.siigo.certificacion.stepdefinitions;
 
 import co.com.siigo.certificacion.exeptions.AccountCreationFailure;
+import co.com.siigo.certificacion.interactions.StopWatch;
 import co.com.siigo.certificacion.models.Customer;
 import co.com.siigo.certificacion.questions.SuccessMessageLinkFormDigital;
 import co.com.siigo.certificacion.tasks.*;
-import co.com.siigo.certificacion.userinterfaces.login.MainPagePage;
+import co.com.siigo.certificacion.userinterfaces.MainPagePage;
 import co.com.siigo.certificacion.utils.dataPruebas;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import net.thucydides.core.webdriver.SerenityWebdriverManager;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static co.com.siigo.certificacion.utils.Constants.MESSAGESUCCESLINKFORMDIGITAL;
+import java.time.Duration;
+
+import static co.com.siigo.certificacion.userinterfaces.ValidationMessagesPage.TEXTO_BIENVENIDA;
+import static co.com.siigo.certificacion.userinterfaces.ValidationMessagesPage.TEXTO_CREDENCIALES_INCORRECTAS;
+import static co.com.siigo.certificacion.utils.Constants.MENSAJEOK;
 import static co.com.siigo.certificacion.utils.WordsToRemember.CUSTOMER_DATA;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 public class LoginStep {
@@ -49,30 +61,49 @@ public class LoginStep {
         Customer customer = theActorInTheSpotlight().recall(CUSTOMER_DATA);
 
         theActorInTheSpotlight().attemptsTo(
-                ProductsAndServices.delTramite(customer.getLogin()),
-                OpenForm.delFormulariofront(),
-                AddPersonalData.enTheForm(customer.getDataCliente()),
-                AddContactData.enElFormulario(customer.getLogin()),
-                SignDocument.documents()
+                CredencialesCorreo.delTramite(customer.getLoginExitoso())
         );
     }
 
 
     @Then("el sistema redirige al dashboard principal")
-    public void elSistemaRedirigeAlDashboardPrincipal() {
-        theActorInTheSpotlight().should(
-                seeThat(SuccessMessageLinkFormDigital.ofFinishingSuccessful(), Matchers.equalTo(true))
-                        .orComplainWith(AccountCreationFailure.class, MESSAGESUCCESLINKFORMDIGITAL.getMessage())
+    public void elSistemaRedirigeAlDashboardPrincipal() throws InterruptedException {
+
+        theActorInTheSpotlight().attemptsTo(
+                WaitUntil.the(TEXTO_BIENVENIDA, isVisible()).forNoMoreThan(10).seconds()
         );
+
+        String texto = TEXTO_BIENVENIDA.resolveFor(theActorInTheSpotlight()).getText();
+
+// Tomar solo la primera línea limpia de espacios extra
+        String primerLinea = texto.split("\\r?\\n")[0].trim();
+
+        assertThat(primerLinea).contains("Te damos la bienvenida, ¿Qué deseas hacer?");
     }
 
 
     @When("ingresa credenciales inválidas")
     public void ingresaCredencialesInválidas() {
+        Customer customer = theActorInTheSpotlight().recall(CUSTOMER_DATA);
+
+        theActorInTheSpotlight().attemptsTo(
+                CredencialesCorreoInvalido.delTramite(customer.getLoginFallido())
+        );
     }
 
     @Then("el sistema muestra el mensaje de error Usuario o contraseña incorrectos")
     public void elSistemaMuestraElMensajeDeErrorUsuarioOContraseñaIncorrectos() {
+
+        theActorInTheSpotlight().attemptsTo(
+                WaitUntil.the(TEXTO_CREDENCIALES_INCORRECTAS, isVisible()).forNoMoreThan(10).seconds()
+        );
+
+        String texto = TEXTO_CREDENCIALES_INCORRECTAS.resolveFor(theActorInTheSpotlight()).getText();
+
+        // Tomar solo la primera línea limpia de espacios extra
+        String primerLinea = texto.split("\\r?\\n")[0].trim();
+
+        assertThat(primerLinea).contains("Usuario o contraseña inválidos");
     }
 
 

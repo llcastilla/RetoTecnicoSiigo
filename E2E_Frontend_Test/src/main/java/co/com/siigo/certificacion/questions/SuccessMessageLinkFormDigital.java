@@ -32,7 +32,7 @@ public class SuccessMessageLinkFormDigital implements Question<Boolean> {
 
         // Capturar el mensaje y compararlo
         String message = Text.of(SUCCESSMESSAJELINKFORMDIGITAL).answeredBy(actor);
-        return Constants.MESSAGESUCCESLINKFORMDIGITAL.getMessage().equals(message);
+        return Constants.MENSAJEOK.getMessage().equals(message);
     }
 
     public static SuccessMessageLinkFormDigital ofFinishingSuccessful() {

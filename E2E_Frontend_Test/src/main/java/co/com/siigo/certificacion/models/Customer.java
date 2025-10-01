@@ -26,11 +26,11 @@ public class Customer implements Serializable {
 
 
 
-    @JsonProperty("login")
-    private transient DataCliente dataCliente;
+    @JsonProperty("loginExitoso")
+    private transient Login loginExitoso;
 
-    @JsonProperty("dataCliente")
-    private transient Login login;
+    @JsonProperty("loginFallido")
+    private transient LoginError loginFallido;
 
 
 
