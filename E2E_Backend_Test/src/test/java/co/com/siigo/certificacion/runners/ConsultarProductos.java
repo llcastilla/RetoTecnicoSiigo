@@ -8,8 +8,8 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/enviar_code_sms.feature",
+        features = "src/test/resources/features/consultar_productos.feature",
         glue = "co.com.siigo.certificacion.stepdefinitions",
         snippets = CAMELCASE)
-public class EnviarSMSWeb {
+public class ConsultarProductos {
 }

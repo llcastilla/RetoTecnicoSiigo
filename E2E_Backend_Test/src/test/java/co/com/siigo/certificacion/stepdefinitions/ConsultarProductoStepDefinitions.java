@@ -7,17 +7,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 
-import static co.com.siigo.certificacion.models.utils.Constants.ENDPOINT_FIELDS;
-import static co.com.siigo.certificacion.models.utils.Constants.ESTADO_SERVICIO_OK;
+import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
-public class ConsultarFieldsStepDefinitions {
+public class ConsultarProductoStepDefinitions {
     Actor actor = Actor.named("tester");
 
 
     @Given("que un cliente autenticado desea obtener un listado de fields")
     public void queUnClienteAutenticadoDeseaObtenerUnListadoDeFields() {
-        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_FIELDS));
+        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_PRODUCTO_GET));
 
     }
 

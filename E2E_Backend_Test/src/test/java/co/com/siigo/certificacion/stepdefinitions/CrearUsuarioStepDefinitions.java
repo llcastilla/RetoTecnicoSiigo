@@ -17,7 +17,7 @@ public class CrearUsuarioStepDefinitions {
 
     @Given("que el servicio de creación de usuarios está disponible")
     public void queElServicioDeCreaciónDeUsuariosEstáDisponible() {
-        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_CREATE_USER));
+        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_PRODUCTO_GET));
 
     }
     @When("se envía una solicitud POST al endpoint de creación de usuarios con la información requerida")
