@@ -3,14 +3,16 @@ package co.com.siigo.certificacion.models.utils;
 public class Constants {
 
     public static final String ENDPOINT_PRODUCTO_GET = "https://fakestoreapi.com/products";
-
     public static final String ENDPOINT_PRODUCTO_PATCH = "https://fakestoreapi.com/products/1";
-
     public static final String ENDPOINT_PRODUCTO_DEL = "https://fakestoreapi.com/products/1";
     public static final String ENDPOINT_CARRITO = "https://fakestoreapi.com/carts";
     public static final String ENDPOINT_CARRITO_PATCH = "https://fakestoreapi.com/carts/1";
-
     public static final String ENDPOINT_CARRITO_DEL = "https://fakestoreapi.com/carts/1";
+
+    public static final String ENDPOINT_USUARIO_PATCH= "https://fakestoreapi.com/users/1";
+    public static final String ENDPOINT_USUARIO= "https://fakestoreapi.com/users";
+    public static final String ENDPOINT_USUARIO_DEL= "https://fakestoreapi.com/userS/1";
+
 
     public static final String EMPTY = "";
     public static final String AUTHORIZATION = "Authorization";
@@ -20,7 +22,11 @@ public class Constants {
     public static final String QUERYPRODUCTO = "{\"title\": \"New Product\", \"price\": 29.99}";
 
 
-    public static final String QUERYCARRITO= "{\"userId\": 1, \"products\": [{\"id\": 1}]}";
+    public static final String QUERYCARRITO = "{\"userId\": 1, \"products\": [{\"id\": 1}]}";
+
+
+    public static final String QUERYUSER = "{\"username\": \"john_doe\", \"email\": \"john@example.com\", \"password\": \"pass123\"}";
+
 
     public static final String SINDATOS = "";
 

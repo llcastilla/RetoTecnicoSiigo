@@ -1,6 +1,6 @@
-Feature: eliminar producto
+Feature: Modificar carrito
 
-  Scenario: eliminar producto
-    Given que un cliente autenticado desea eliminar un producto
-    When se realiza una solicitud DELETE al endpoint de producto
-    Then el servicio responde con el código de estado OK
+  Scenario: Generar modificación de un carrito
+    Given que un cliente autenticado tiene un carrito existente
+    When se realiza una solicitud PUT al endpoint de carrito con la información actualizada
+    Then el servicio responde con el código de estado exitoso y el carrito se modifica correctamente

@@ -1,0 +1,34 @@
+package co.com.siigo.certificacion.stepdefinitions;
+
+
+import co.com.siigo.certificacion.models.tasks.ConnectExistClientApi;
+import co.com.siigo.certificacion.models.tasks.ConsumerPatch;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import net.serenitybdd.screenplay.Actor;
+
+import static co.com.siigo.certificacion.models.utils.Constants.*;
+import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
+
+public class ModificarUsuarioStepDefinitions {
+    Actor actor = Actor.named("tester");
+
+    @Given("que un cliente autenticado tiene un usuario existente a modificar")
+    public void queUnClienteAutenticadoTieneUnUsuarioExistenteAModificar() {
+        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_USUARIO_PATCH));
+
+    }
+
+    @When("se realiza una solicitud PUT al endpoint de usuarios con la información actualizada")
+    public void seRealizaUnaSolicitudPUTAlEndpointDeUsuariosConLaInformaciónActualizada() {
+        actor.attemptsTo(ConsumerPatch.elServicio(QUERYUSER));
+
+    }
+
+    @Then("el servicio responde con el código de estado exitoso y el usuario se modifica correctamente")
+    public void elServicioRespondeConElCódigoDeEstadoExitosoYElUsuarioSeModificaCorrectamente() {
+        actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_SERVICIO_OK)));
+
+    }
+}
