@@ -7,7 +7,10 @@ public class Constants {
     public static final String ENDPOINT_PRODUCTO_PATCH = "https://fakestoreapi.com/products/1";
 
     public static final String ENDPOINT_PRODUCTO_DEL = "https://fakestoreapi.com/products/1";
+    public static final String ENDPOINT_CARRITO = "https://fakestoreapi.com/carts";
+    public static final String ENDPOINT_CARRITO_PATCH = "https://fakestoreapi.com/carts/1";
 
+    public static final String ENDPOINT_CARRITO_DEL = "https://fakestoreapi.com/carts/1";
 
     public static final String EMPTY = "";
     public static final String AUTHORIZATION = "Authorization";
@@ -17,13 +20,7 @@ public class Constants {
     public static final String QUERYPRODUCTO = "{\"title\": \"New Product\", \"price\": 29.99}";
 
 
-    public static final String QUERYCREATEUSER = "{\n" +
-            "  \"fullName\": \"" + System.getenv("NAME") + "\",\n" +
-            "  \"username\": \"" + System.getenv("USUARIO") + "\",\n" +
-            "  \"password\": \"Fbey6d9ti_*1190\",\n" +
-            "  \"email\": \"" + System.getenv("EMAIL") + "\",\n" +
-            "  \"role\": \"operador\"\n" +
-            "}";
+    public static final String QUERYCARRITO= "{\"userId\": 1, \"products\": [{\"id\": 1}]}";
 
     public static final String SINDATOS = "";
 

@@ -10,23 +10,24 @@ import net.serenitybdd.screenplay.Actor;
 import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
 
-public class ConsultarProductoStepDefinitions {
+public class ConsultarCarritoStepDefinitions {
     Actor actor = Actor.named("tester");
 
-    @Given("que un cliente autenticado desea obtener un listado de los productos")
-    public void queUnClienteAutenticadoDeseaObtenerUnListadoDeLosProductos() {
-        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_PRODUCTO_GET));
+
+    @Given("que un cliente autenticado desea obtener la información de su carrito")
+    public void queUnClienteAutenticadoDeseaObtenerLaInformaciónDeSuCarrito() {
+        actor.attemptsTo(ConnectExistClientApi.alServicio(ENDPOINT_CARRITO));
 
     }
 
-    @When("se realiza una solicitud GET al endpoint de los productos")
-    public void seRealizaUnaSolicitudGETAlEndpointDeLosProductos() {
+    @When("se realiza una solicitud GET al endpoint de carrito")
+    public void seRealizaUnaSolicitudGETAlEndpointDeCarrito() {
         actor.attemptsTo(ConnectUser.alServicio());
 
     }
 
-    @Then("el servicio responde con el código de estado exitoso y muestra datos del producto")
-    public void elServicioRespondeConElCódigoDeEstadoExitosoYMuestraDatosDelProducto() {
+    @Then("el servicio responde con el código de estado exitoso y los datos del carrito solicitado")
+    public void elServicioRespondeConElCódigoDeEstadoExitosoYLosDatosDelCarritoSolicitado() {
         actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_SERVICIO_OK)));
 
     }

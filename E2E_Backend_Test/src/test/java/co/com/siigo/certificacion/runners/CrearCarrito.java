@@ -8,8 +8,8 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/crear_usuario.feature",
+        features = "src/test/resources/features/crear_carrito.feature",
         glue = "co.com.siigo.certificacion.stepdefinitions",
         snippets = CAMELCASE)
-public class CrearUsuario {
+public class CrearCarrito {
 }
