@@ -1,36 +1,35 @@
 repositories {
     mavenLocal()
-    maven {
-        url = "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
-    }
+    mavenCentral()
 }
 buildscript {
     repositories {
         mavenLocal()
-        maven {
-            url = "https://artifactory.apps.bancolombia.com/maven-bancolombia/"
-        }
+        mavenCentral()
+        maven {url "https://plugins.gradle.org/m2/"}
     }
+
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:4.0.12")
     }
 }
 
-
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
+
 group 'ms_gestioninformacioncliente_test'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
-
-tasks.withType(Test){
+tasks.withType(Test) {
     maxParallelForks = Runtime.runtime.availableProcessors()
 }
+
 dependencies {
     // Testing
     testImplementation 'junit:junit:4.13.2'
@@ -46,7 +45,8 @@ dependencies {
     implementation 'net.serenity-bdd:serenity-screenplay-rest:4.0.12'
 }
 
-task variables(type: Test){
-    systemProperty 'token',System.getProperty('token')
+task variables(type: Test) {
+    systemProperty 'token', System.getProperty('token')
 }
+
 gradle.startParameter.continueOnFailure = true
