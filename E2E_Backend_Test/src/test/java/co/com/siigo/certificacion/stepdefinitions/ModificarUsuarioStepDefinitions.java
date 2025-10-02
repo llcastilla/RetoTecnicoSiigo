@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import static org.hamcrest.Matchers.*;
 
 import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
@@ -25,10 +26,18 @@ public class ModificarUsuarioStepDefinitions {
         actor.attemptsTo(ConsumerPatch.elServicio(QUERYUSER));
 
     }
-
     @Then("el servicio responde con el código de estado exitoso y el usuario se modifica correctamente")
     public void elServicioRespondeConElCódigoDeEstadoExitosoYElUsuarioSeModificaCorrectamente() {
-        actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_SERVICIO_OK)));
-
+        actor.should(
+                seeThatResponse("El servicio debe responder con 200 OK y devolver los datos del usuario modificado",
+                        response -> response
+                                .statusCode(ESTADO_SERVICIO_OK)
+                                .body("username", not(isEmptyOrNullString()))
+                                .body("username", equalTo("john_doe"))
+                                .body("email", not(isEmptyOrNullString()))
+                                .body("email", equalTo("john@example.com"))
+                )
+        );
     }
+
 }

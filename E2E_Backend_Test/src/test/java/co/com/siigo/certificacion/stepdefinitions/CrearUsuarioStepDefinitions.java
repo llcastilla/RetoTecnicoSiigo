@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import static org.hamcrest.Matchers.*;
 
 import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
@@ -30,8 +31,14 @@ public class CrearUsuarioStepDefinitions {
 
     @Then("el servicio responde con el código de estado exitoso y el usuario es creado correctamente")
     public void elServicioRespondeConElCódigoDeEstadoExitosoYElUsuarioEsCreadoCorrectamente() {
-        actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_OK)));
-
-
+        actor.should(
+                seeThatResponse("El servicio debe responder con código exitoso y retornar el id del usuario creado",
+                        response -> response
+                                .statusCode(ESTADO_OK) // normalmente sería 201 Created
+                                .body("id", notNullValue())
+                                .body("id", greaterThan(0))
+                )
+        );
     }
+
 }

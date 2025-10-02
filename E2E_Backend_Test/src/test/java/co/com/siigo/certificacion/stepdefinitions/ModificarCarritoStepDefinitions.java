@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
+import static org.hamcrest.Matchers.*;
 
 import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
@@ -29,7 +30,17 @@ public class ModificarCarritoStepDefinitions {
 
     @Then("el servicio responde con el código de estado exitoso y el carrito se modifica correctamente")
     public void elServicioRespondeConElCódigoDeEstadoExitosoYElCarritoSeModificaCorrectamente() {
-        actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_SERVICIO_OK)));
-
+        actor.should(
+                seeThatResponse("El servicio debe responder con 200 OK y devolver los datos del carrito modificado",
+                        response -> response
+                                .statusCode(ESTADO_SERVICIO_OK)
+                                .body("id", notNullValue())
+                                .body("userId", notNullValue())
+                                .body("products", not(empty()))
+                                .body("products[0].id", notNullValue())
+                                .body("products[0].id", equalTo(1))
+                )
+        );
     }
+
 }

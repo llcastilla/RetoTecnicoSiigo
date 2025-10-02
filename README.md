@@ -1,61 +1,101 @@
-# **EVC OFFSHORE – RECOLECTOR**
+# Reto Técnico – Automatización de Pruebas E2E y Backend
 
-## Introducción 🚀
+Este proyecto contiene el desarrollo de un reto técnico orientado a la automatización de pruebas tanto de **Front-End (UI)** como de **Back-End (API)**, implementando el patrón **Screenplay** con el framework **Serenity BDD**.
 
+El objetivo principal es demostrar las buenas prácticas en la construcción de pruebas automáticas, asegurando **mantenibilidad, legibilidad y escalabilidad** de los casos de prueba.
 
-Vinculación es una aplicación que se encarga de realizar la inscripción preliminar para solicitar una cuenta de ahorro y/o corriente. Estas cuentas están dirigidas a clientes colombianos que quieran abrir sus cuentas en USD.
-
-Las pruebas de esta aplicación se ejecutan en la siguiente web: [FRONT DE RECOLECCIONES](https://frc-fe-qa.apps.ambientesbc.com/).
-
-
-## Pre requisitos 📋
-- Java version 11, JDK (variables de entorno configuradas).
-- Eclipse IDE ó IntelliJ IDEA (version 2023).
-- Gradle version 8.9 ó más alta (variables de entorno configuradas).
-- Cucumber for Java Plugin (Versión actualizada).
-- Gherkin Plugin (Versión actualizada).
-- ChromeDriver (Versión actualizada) para ejecuciones locales de automatizaciones.
-- ChromeDriver (Versión actualizada) para la ejecución del RM Pipeline (el navegador web VDI Chrome donde se ejecuta el Pipeline tiene la versión equivalente).
-
-## Navegador web  🌐
-La automatización actualmente se ejecuta en el siguiente navegador:
-- Google Chrome Versión 124.0.6367.209.
-
-## Instalación ⚙️
-- Para clonar este repositorio localmente, se debe ejecutar el siguiente comando:
-```clon de git https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_git/NU5490001_Front_De_Recoleccion_FE_Test```.
-- Importar el proyecto desde Eclipse o IntelliJ IDE bajo la estructura de un proyecto Gradle existente ó nuevo.
-- Configurar la biblioteca del sistema JRE con JavaSE-11.
-- Configurar la codificación a UTF-8 del proyecto una vez importado.
-
-## Comando para ejecución ▶️
-- El proyecto se puede ejecutar desde la consola con el siguiente comando:
-```gradle clean test aggregate```.
-- The Serenity report will be generated in the folder ``/target/site/serenity/`` located in the root folder of each automation project.
-
-## Construcción 🛠
-La automatización se desarrolla con:
-- BDD (Behavior-Driven Development) - Estrategia de desarrollo.
-- Patrón de guión - Patrón de diseño que aplica principios SÓLIDOS.
-- Gradle - Gerente de proyectos y dependencias.
-- Selenium Web Driver - Herramienta para automatizar acciones en navegadores web.
-- Cucumber - Framework para automatizar pruebas BDD.
-- Serenity BDD - Framework, biblioteca de código abierto para generación de informes.
-- Gherkin: lenguaje específico de dominio (DSL) legible para empresas.
-
-## Convención de programación 🎨
-Los siguientes estilos de escritura se utilizan en las automatizaciones:
-- Variables y funciones: Lower Camel Case. Ejemplo: `nomenclaturaEjemplo`.
-- Nombres de clase: PascalCase o Upper Camel Case. Ejemplo: `EjemploDeNomenclatura`.
-- Nombres de funciones: Snake Case. Ejemplo: `nomenclatura_ejemplo`.
-
-## Versionado  🔀
-Para el control de versiones se utiliza Git, aplicando la metodología de Desarrollo Basado en Trunk.
-
-## Carpeta "Documentos de Pruebas" 📑
 ---
-IEs la carpeta que contiene los modelos de transacciones automatizadas de Bizagi y la estrategia de prueba global.
 
-## NU5490001_Front_De_Recoleccion_Test 🎬
+## 🚀 Tecnologías utilizadas
+
+- **Lenguaje:** Java 17
+- **Framework:** Serenity BDD
+- **Patrón de diseño:** Screenplay Pattern
+- **Gestión de dependencias:** Gradle
+- **Front-End Testing:** Serenity Screenplay con Selenium WebDriver
+- **Back-End Testing:** Serenity Rest (RestAssured + Serenity)
+- **Ejecución de pruebas:** JUnit / Cucumber
+- **Reportes:** Serenity Reports
+
 ---
-Es la carpeta que contiene el proyecto de prueba automatizado.
+
+## 📌 Estructura del proyecto
+
+El proyecto está dividido en dos módulos principales:
+
+1. **Pruebas de Front-End (UI)**
+    - Automatización E2E con Selenium y Serenity Screenplay.
+    - Se construyen **Tasks, Interactions y Questions** para modelar el comportamiento de los usuarios.
+    - Se definen escenarios en **Gherkin (Cucumber)** para mantener pruebas legibles y fáciles de entender.
+
+2. **Pruebas de Back-End (API)**
+    - Automatización de servicios REST utilizando Serenity Rest.
+    - Validación de códigos de estado HTTP y respuestas JSON.
+    - Escenarios definidos en **Gherkin (Cucumber)** para documentar la intención de las pruebas.
+
+---
+
+## 🧪 Ejecución de pruebas
+
+### 🔹 Pruebas de UI (Front-End)
+Ejecutar los escenarios definidos en el módulo de **UI**:
+```bash
+./gradlew clean test -i
+```
+
+```cmd
+gradle clean test -i
+```
+
+### 🔹 Pruebas de API (Back-End)
+Ejecutar los escenarios definidos en el módulo de **API**:
+```bash
+./gradlew clean test -i
+```
+
+```cmd
+gradle clean test -i
+```
+
+### 🔹 Reporte Serenity
+Al finalizar la ejecución se genera el reporte Serenity en:
+```
+target/site/serenity/index.html
+```
+
+---
+
+## 📂 Organización de carpetas
+
+```bash
+src
+ └── test
+      ├── java
+      │    ├── tasks        # Acciones de alto nivel
+      │    ├── interactions # Acciones detalladas del actor
+      │    ├── questions    # Validaciones y aserciones
+      │    ├── models       # Representación de datos
+      │    └── runners      # Configuración de ejecución
+      └── resources
+           └── features     # Escenarios en Gherkin
+```
+
+---
+
+## ✅ Alcance del reto
+
+- **Front-End (UI):**
+    - Escenarios E2E representando el flujo de usuario en la aplicación.
+    - Validaciones visuales y funcionales.
+
+- **Back-End (API):**
+    - Escenarios de prueba sobre endpoints REST.
+    - Casos de éxito y error (códigos de estado, estructura de la respuesta, mensajes).
+
+---
+
+## 📊 Resultados esperados
+
+- Pruebas claras y fáciles de entender por cualquier miembro del equipo.
+- Reportes detallados en Serenity para analizar resultados.
+- Arquitectura basada en **Screenplay**, promoviendo reutilización de código.  

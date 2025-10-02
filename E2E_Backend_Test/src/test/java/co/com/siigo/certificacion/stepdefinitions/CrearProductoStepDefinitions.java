@@ -11,6 +11,7 @@ import net.serenitybdd.screenplay.Actor;
 
 import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
+import static org.hamcrest.Matchers.*;
 
 public class CrearProductoStepDefinitions {
     Actor actor = Actor.named("tester");
@@ -30,7 +31,15 @@ public class CrearProductoStepDefinitions {
 
     @Then("el servicio responde con el código de estado HTTP Created")
     public void elServicioRespondeConElCódigoDeEstadoHTTPCreated() {
-        actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_OK)));
-
+        actor.should(
+                seeThatResponse("El servicio debe responder con 201 y datos válidos del producto creado",
+                        response -> response
+                                .statusCode(ESTADO_OK) // normalmente para creación se espera 201 Created
+                                .body("id", notNullValue())
+                                .body("title", not(isEmptyOrNullString()))
+                                .body("price", greaterThan(0f))
+                )
+        );
     }
+
 }

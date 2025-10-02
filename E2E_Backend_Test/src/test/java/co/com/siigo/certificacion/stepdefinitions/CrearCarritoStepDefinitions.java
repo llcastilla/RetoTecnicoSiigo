@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.Actor;
 
 import static co.com.siigo.certificacion.models.utils.Constants.*;
 import static net.serenitybdd.screenplay.rest.questions.ResponseConsequence.seeThatResponse;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class CrearCarritoStepDefinitions {
     Actor actor = Actor.named("tester");
@@ -29,7 +30,14 @@ public class CrearCarritoStepDefinitions {
 
     @Then("el servicio responde con el código de estado exitoso y el carrito es creado correctamente")
     public void elServicioRespondeConElCódigoDeEstadoExitosoYElCarritoEsCreadoCorrectamente() {
-        actor.should(seeThatResponse("", response -> response.statusCode(ESTADO_OK)));
-
+        actor.should(
+                seeThatResponse("El carrito fue creado correctamente",
+                        response -> response.statusCode(ESTADO_OK)
+                                .body("id", equalTo(11))
+                                .body("userId", equalTo(1))
+                                .body("products[0].id", equalTo(1))
+                )
+        );
     }
+
 }
